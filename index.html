@@ -1,0 +1,117 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mudi Dorababu | Elite Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{--bg:#05060a;--text:#ffffff;--muted:#9aa3b2;--accent:#7c8cff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 20px}
+
+/* HERO */
+.hero{flex-direction:column;text-align:center}
+.hero h1{font-size:4rem;font-weight:800;line-height:1.1}
+.hero p{margin-top:20px;color:var(--muted);font-size:1.2rem}
+
+/* SPLIT TEXT */
+.split span{display:inline-block;opacity:0;transform:translateY(50px)}
+
+/* SECTIONS */
+.container{max-width:1100px}
+h2{font-size:2.5rem;margin-bottom:20px}
+p{color:var(--muted);line-height:1.6}
+
+/* PROJECTS */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
+.card{padding:30px;border-radius:20px;background:#0e111a;transition:.4s;border:1px solid rgba(255,255,255,0.05)}
+.card:hover{transform:translateY(-12px) scale(1.03);box-shadow:0 20px 40px rgba(124,140,255,.2)}
+
+/* CONTACT */
+.cta{text-align:center}
+.cta button{padding:15px 30px;border:none;border-radius:30px;background:var(--accent);color:#fff;font-size:1rem;cursor:pointer}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:center;gap:30px;padding:20px;background:rgba(0,0,0,.3);backdrop-filter:blur(12px)}
+nav a{color:#fff;text-decoration:none;opacity:.7}
+nav a:hover{opacity:1;color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#projects">Work</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<h1 class="split" id="title">Mudi Dorababu</h1>
+<p>Crafting fast, scalable digital experiences</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="container">
+<h2>About</h2>
+<p>I am a frontend developer focused on building high-performance, interactive and scalable digital products. I enjoy combining design, motion and engineering to create seamless user experiences.</p>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container">
+<h2>Featured Work</h2>
+<div class="projects">
+<div class="card"><h3>Quiz App</h3><p>Dynamic quiz with timer & scoring</p></div>
+<div class="card"><h3>Simon Game</h3><p>Interactive memory logic game</p></div>
+<div class="card"><h3>Portfolio</h3><p>Modern responsive UI system</p></div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="cta">
+<h2>Let’s Work Together</h2>
+<button onclick="alert('Contact: youremail@gmail.com')">Get In Touch</button>
+</div>
+</section>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+// split text animation
+const title = document.getElementById('title');
+const letters = title.textContent.split("");
+title.innerHTML = letters.map(l => `<span>${l}</span>`).join("");
+
+gsap.to(".split span",{
+  y:0,
+  opacity:1,
+  stagger:0.05,
+  duration:1,
+  ease:"power3.out"
+});
+
+// scroll animations
+
+document.querySelectorAll("section").forEach(sec=>{
+  gsap.from(sec,{
+    opacity:0,
+    y:100,
+    duration:1,
+    scrollTrigger:{trigger:sec,start:"top 80%"}
+  });
+});
+</script>
+
+</body>
+</html>
